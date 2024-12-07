@@ -5,7 +5,7 @@ import { GlobalModal } from 'src/components/shareds';
 import { GlobalIcon, GlobalIcons } from 'src/components/ui';
 import { useCreateProductTypeMutation, useEditProductTypeMutation } from 'src/services/index.api';
 import { TProductChange } from 'src/services/products/products.types';
-import { useFormStorageStore, useIconsPersistStore } from 'src/store';
+import { useFormStorageStore } from 'src/store';
 
 const ProductTypesForm: React.FC = () => {
   const [form] = Form.useForm();
@@ -13,8 +13,6 @@ const ProductTypesForm: React.FC = () => {
   const [iconCode, setIconCode] = React.useState('');
   const [color, setColor] = React.useState('');
   const [bgColor, setBgColor] = React.useState('');
-
-  const icons = useIconsPersistStore((state) => state.icons);
 
   const {
     mutate: createProductType,
@@ -95,11 +93,7 @@ const ProductTypesForm: React.FC = () => {
           </Popover>
         </Form.Item>
         <div className="flex items-center gap-2">
-          <GlobalIcon
-            value={icons.find((icon) => icon.code === iconCode)?.content}
-            color={color}
-            bgColor={bgColor}
-          />
+          <GlobalIcon value={iconCode} color={color} bgColor={bgColor} />
           <br />
           <br />
           <Form.Item name="color" label="Цвет" rules={[{ required: false, message: '' }]}>

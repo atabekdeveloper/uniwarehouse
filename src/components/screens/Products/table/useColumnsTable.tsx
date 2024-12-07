@@ -1,10 +1,10 @@
 import { ColumnsType } from 'antd/es/table';
 import { GlobalIcon } from 'src/components/ui';
 import { TProductItem } from 'src/services/products/products.types';
-import { useFormStorageStore, useIconsPersistStore } from 'src/store';
+import { useFormStorageStore } from 'src/store';
+import { formatPrice } from 'src/utils';
 
 export const useColumnsTable = () => {
-  const icons = useIconsPersistStore((state) => state.icons);
   const setParamsForm = useFormStorageStore((state) => state.setParamsForm);
   const columns: ColumnsType<TProductItem> = [
     {
@@ -31,15 +31,44 @@ export const useColumnsTable = () => {
       onCell: (data) => ({ onClick: () => setParamsForm(data) }),
     },
     {
+      title: 'Количество',
+      dataIndex: 'amount',
+      key: 'amount',
+      render: (value) => value || '-',
+      onCell: (data) => ({ onClick: () => setParamsForm(data) }),
+    },
+    {
+      title: 'Цена',
+      dataIndex: 'price',
+      key: 'price',
+      render: (value) => formatPrice(value, ''),
+      onCell: (data) => ({ onClick: () => setParamsForm(data) }),
+    },
+    {
+      title: 'Тип',
+      dataIndex: 'type',
+      key: 'type',
+      onCell: (data) => ({ onClick: () => setParamsForm(data) }),
+      render: (_, r) => (
+        <GlobalIcon
+          value={r.type.icon}
+          color={r.type.color}
+          bgColor={r.type.bgColor}
+          title={r.type.nameRu}
+        />
+      ),
+    },
+    {
       title: 'Единица',
       dataIndex: 'unit',
       key: 'unit',
       onCell: (data) => ({ onClick: () => setParamsForm(data) }),
       render: (_, r) => (
         <GlobalIcon
-          value={icons.find((icon) => icon.code === r.unit.icon)?.content}
+          value={r.unit.icon}
           color={r.unit.color}
           bgColor={r.unit.bgColor}
+          title={r.unit.nameRu}
         />
       ),
     },
@@ -50,9 +79,10 @@ export const useColumnsTable = () => {
       onCell: (data) => ({ onClick: () => setParamsForm(data) }),
       render: (_, r) => (
         <GlobalIcon
-          value={icons.find((icon) => icon.code === r.quality.icon)?.content}
+          value={r.quality.icon}
           color={r.quality.color}
           bgColor={r.quality.bgColor}
+          title={r.quality.nameRu}
         />
       ),
     },
@@ -63,9 +93,10 @@ export const useColumnsTable = () => {
       onCell: (data) => ({ onClick: () => setParamsForm(data) }),
       render: (_, r) => (
         <GlobalIcon
-          value={icons.find((icon) => icon.code === r.status.icon)?.content}
+          value={r.status.icon}
           color={r.status.color}
           bgColor={r.status.bgColor}
+          title={r.status.nameRu}
         />
       ),
     },

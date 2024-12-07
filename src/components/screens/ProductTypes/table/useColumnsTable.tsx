@@ -1,10 +1,9 @@
 import { ColumnsType } from 'antd/es/table';
 import { GlobalIcon } from 'src/components/ui';
 import { TProductTypeItem } from 'src/services/product-types/product-types.types';
-import { useFormStorageStore, useIconsPersistStore } from 'src/store';
+import { useFormStorageStore } from 'src/store';
 
 export const useColumnsTable = () => {
-  const icons = useIconsPersistStore((state) => state.icons);
   const setParamsForm = useFormStorageStore((state) => state.setParamsForm);
   const columns: ColumnsType<TProductTypeItem> = [
     {
@@ -35,13 +34,7 @@ export const useColumnsTable = () => {
       dataIndex: 'icon',
       key: 'icon',
       onCell: (data) => ({ onClick: () => setParamsForm(data) }),
-      render: (_, r) => (
-        <GlobalIcon
-          value={icons.find((icon) => icon.code === r.icon)?.content}
-          color={r.color}
-          bgColor={r.bgColor}
-        />
-      ),
+      render: (_, r) => <GlobalIcon value={r.icon} color={r.color} bgColor={r.bgColor} />,
     },
   ];
   return columns;
