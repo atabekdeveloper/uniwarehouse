@@ -1,0 +1,61 @@
+/* Drawer */
+.ant-drawer-body {
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.ant-drawer-content-wrapper {
+  box-shadow: none !important;
+}
+
+.ant-drawer-header {
+  padding: 10px 0 !important;
+  margin-bottom: 10px !important;
+}
+
+.ant-drawer-header-title {
+  align-items: self-end !important;
+}
+
+.ant-drawer-footer {
+  padding: 8px 0 !important;
+}
+
+/* Menu */
+.ant-menu {
+  border-inline-end: none !important;
+}
+
+.ant-menu-item-group-title,
+.ant-menu-item-selected .ant-menu-title-content {
+  font-weight: 500 !important;
+}
+
+/* Table */
+.ant-table-content {
+  height: calc(100vh - 210px) !important;
+  overflow: auto !important;
+}
+.ant-table-thead {
+  position: sticky !important;
+  top: 0;
+  z-index: 20;
+}
+.ant-empty {
+  position: sticky !important;
+  margin-top: 30vh;
+  padding-bottom: 25vh;
+}
+
+/* Pagination */
+.ant-pagination {
+  border-top: 1px solid #e5e7eb !important;
+  background-color: #fff !important;
+  padding: 12px 10px !important;
+  border-radius: 0 0 8px 8px !important;
+  margin: 0 !important;
+}
+
+.ant-pagination-options {
+  display: none !important;
+}
